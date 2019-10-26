@@ -152,6 +152,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AcWing 168. 生日蛋糕" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AcWing-168-生日蛋糕"><a href="#AcWing-168-生日蛋糕" class="headerlink" title="AcWing 168. 生日蛋糕"></a>AcWing 168. 生日蛋糕</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>7月17日是Mr.W的生日，ACM-THU为此要制作一个体积为NπNπ的M层生日蛋糕，每层都是一个圆柱体。</p>
+<p>设从下往上数第i层蛋糕是半径为RiRi, 高度为HiHi的圆柱。</p>
+<p>当i &lt; M时，要求RiRi &gt; RiRi+1且HiHi &gt; HiHi+1。</p>
+<p>由于要在蛋糕上抹奶油，为尽可能节约经费，我们希望蛋糕外表面（最下一层的下底面除外）的面积Q最小。</p>
+<p>令Q = SπSπ ，请编程对给出的N和M，找出蛋糕的制作方案（适当的RiRi和HiHi的值），使S最小。</p>
+<p>除Q外，以上所有数据皆为正整数 。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入包含两行，第一行为整数N（N &lt;= 10000），表示待制作的蛋糕的体积为NπNπ。</p>
+<p>第二行为整数M(M &lt;= 20)，表示蛋糕的层数为M。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出仅一行，是一个正整数S（若无解则S = 0）。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤N≤100001≤N≤10000,<br>1≤M≤201≤M≤20</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">100</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">68</span><br></pre></td></tr></table></figure>
+
+<h5 id="做题思路：DFS-可行性剪枝剪枝-最优化剪枝"><a href="#做题思路：DFS-可行性剪枝剪枝-最优化剪枝" class="headerlink" title="做题思路：DFS+可行性剪枝剪枝+最优化剪枝"></a>做题思路：DFS+可行性剪枝剪枝+最优化剪枝</h5><p>​    搜索框架：自底向上搜索，枚举记录每一层蛋糕的半径和高度，枚举也是从大到小的顺序。其中直径的范围是[u , min( √(n - v) , R[u + 1] - 1) )]，u代表当前层数。而直径的范围是[u , min( (n - v) / r / r , H[u + 1] - 1]。之所以先枚举半径也是<strong>因为面积公式r带平方</strong>，可以缩小搜索空间。由于是枚举，所以不需回溯。</p>
+<p>​    剪枝策略：</p>
+<ol>
+<li><p>可行性剪枝：当前体积(指底层到此层) + 1~u的体积 &gt; n ,剪枝。</p>
+</li>
+<li><p>最优性剪枝：1）当前面积 + 1~u的面积 &gt; 当前ans，说明无法更新答案，剪枝。</p>
+<p>​                       2）根据缩放，可知当前面积 + 1~u &gt;=2 * (n - v) / R[u + 1] , 结合上一条，也可剪枝。</p>
+<p>结束~</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">25</span> , INF = <span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> R[N] , H[N];</span><br><span class="line"><span class="keyword">int</span> minv[N] , mins[N];</span><br><span class="line"><span class="keyword">int</span> n , m , ans = INF;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u , <span class="keyword">int</span> v , <span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(v + minv[u] &gt; n)	<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(s + mins[u] &gt; ans)	<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(s + <span class="number">2</span> * (n - v) / R[u + <span class="number">1</span>] &gt;= ans)	<span class="keyword">return</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(!u)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(v == n)</span><br><span class="line">			ans = s;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> r = min((<span class="keyword">int</span>)<span class="built_in">sqrt</span>(n - v) , R[u + <span class="number">1</span>] - <span class="number">1</span>); r &gt;= u; --r)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> h = min((n - v) / r / r , H[u + <span class="number">1</span>] - <span class="number">1</span>) ; h &gt;= u; --h)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>(u == m) t = r * r;</span><br><span class="line">			R[u] = r; H[u] = h;</span><br><span class="line">			dfs(u - <span class="number">1</span> , v + r * r *h , s + <span class="number">2</span> * r * h + t);</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		minv[i] = i * i * i + minv[i - <span class="number">1</span>];</span><br><span class="line">		mins[i] = <span class="number">2</span> * i * i + mins[i - <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	R[m + <span class="number">1</span>] = H[m + <span class="number">1</span>] = INF;</span><br><span class="line">	</span><br><span class="line">	dfs(m , <span class="number">0</span> , <span class="number">0</span>); <span class="comment">//自底向上搜索 </span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h5 id="原文链接："><a href="#原文链接：" class="headerlink" title="原文链接："></a>原文链接：</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/26/AcWing 168. 生日蛋糕/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
