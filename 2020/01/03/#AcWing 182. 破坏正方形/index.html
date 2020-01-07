@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#AcWing 182. 破坏正方形##迭代加深+估价函数  解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号">
+  <meta name="description" content="AcWing 182. 破坏正方形迭代加深+估价函数 解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号从1开始">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2020/01/03/#AcWing 182. 破坏正方形/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#AcWing 182. 破坏正方形##迭代加深+估价函数  解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号">
+<meta property="og:description" content="AcWing 182. 破坏正方形迭代加深+估价函数 解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号从1开始">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-03T09:50:53.595Z">
+<meta property="og:updated_time" content="2020-01-07T08:35:15.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="#AcWing 182. 破坏正方形##迭代加深+估价函数  解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号">
+<meta name="twitter:description" content="AcWing 182. 破坏正方形迭代加深+估价函数 解题思路：  用 vector 数组记录每个正方形的边的编号。找到最小完整正方形，去掉其中的一根火柴，进行迭代搜索。因为存储正方形是从小到大的，所以可以找到最小的。   估计函数设计思路:  扫描所有正方形找到一个完整正方形，删掉所有的边，但是只记录删除一次。   易错点：  开数组大小要大于等于61，因为火柴有2n(n+1)根，且编号从1开始">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,8 +159,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#AcWing 182. 破坏正方形<br>##迭代加深+估价函数</p>
-<hr>
+        <h1 id="AcWing-182-破坏正方形"><a href="#AcWing-182-破坏正方形" class="headerlink" title="AcWing 182. 破坏正方形"></a>AcWing 182. 破坏正方形</h1><h2 id="迭代加深-估价函数"><a href="#迭代加深-估价函数" class="headerlink" title="迭代加深+估价函数"></a>迭代加深+估价函数</h2><hr>
 <p><strong>解题思路：</strong></p>
 <blockquote>
 <p>用 vector 数组记录每个正方形的边的编号。<br>找到最小完整正方形，去掉其中的一根火柴，进<br>行迭代搜索。因为存储正方形是从小到大的，所<br>以可以找到最小的。</p>
